@@ -1,0 +1,124 @@
+# include <stdio.h>
+# include <conio.h>
+# include <stdlib.h>
+
+// Creating a structure for each node of the linked list
+struct node {
+	int data;
+	struct node *link;
+
+};
+
+// Initializing the linked list with it's first element
+struct node *top = 0;
+
+// Declaration of functions to be performed on stack
+void insert(int val);
+void delete();
+void display();
+void peek();
+
+
+// Starting of code execution
+void main(){
+
+	int choice, num;
+
+	clrscr();
+
+	do{
+		printf("\n\n -- Press 1 to insert\n -- Press 2 to delete\n -- Press 3 to display\n -- Press 4 to peek (see the top)\n -- Press 5 to exit\n\n Enter Your Choice: ");
+		scanf("%d", &choice);
+
+		switch(choice){
+			case 1:  // For Insertion
+				clrscr();
+				printf("\nEnter the element you want to insert: ");
+				scanf("%d", &num);
+				insert(num);
+				printf("\nPress Any Key To Return To The Main Menu\n");
+				getch();
+				break;
+			case 2:  // For Deletion
+				clrscr();
+				delete();
+				printf("\nPress Any Key To Return To The Main Menu\n");
+				getch();
+				break;
+			case 3:  // For Displaying
+				clrscr();
+				display();
+				printf("\nPress Any Key To Return To The Main Menu\n");
+				getch();
+				break;
+			case 4:  // For Displaying The Head Or The Top Of The Stack
+				clrscr();
+				peek();
+				printf("\nPress Any Key To Return To The Main Menu\n");
+				getch();
+				break;
+			case 5:  // For Exitting The Loop
+				clrscr();
+				printf("\nPress any key to exit.\n\n");
+				getch();
+				break;
+			default:  // Default Option
+				clrscr();
+				printf("Please Enter A  Correct Option.\n");
+				printf("\nPress Any Key To Return To The Main Menu\n");
+				getch();
+		}
+	}while(choice != 5);
+
+	return;
+}
+
+
+// Defining the functions
+
+void insert(int val){
+	struct node *newnode;
+	newnode = (struct node*)malloc(sizeof(struct node));
+	newnode -> data = val;
+	newnode -> link = top;
+	top = newnode;
+	printf("Element inserted: %d\n", top -> data);
+	return;
+}
+
+void delete(){
+	struct node *temp;
+	temp = top;
+
+	if(top == 0){
+		printf("\nEmpty Stack\n");
+	}else{
+		printf("Deleted element is: %d", top -> data);
+		top = top -> link;
+		free(temp);
+	}
+}
+
+void display(){
+	struct node *temp;
+	temp = top;
+	if (top == 0){
+		printf("\nEmpty Stack\n");
+	}else{
+		while( temp != 0){
+			printf("\n|__ %d\n", temp -> data);
+			temp = temp -> link;
+		}
+	}
+	printf("_______________\n");
+	return;
+}
+
+void peek(){
+	if (top == 0){
+			printf("\nEmpty Stack\n");
+		}else{
+			printf("\nThe top of the stack is %d\n", top -> data);
+		}
+	return;
+}

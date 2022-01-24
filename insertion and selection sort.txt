@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+void main(){
+    // Creating arrays for insertion sort and selection sort
+    int arr[] = {5, 4, 10, 1, 6, 2};
+    int arr2[] = {5, 4, 10, 1, 6, 2};
+
+    // Declaring iterative variables
+    int i, j;
+    int temp;
+
+    int n = sizeof(arr)/sizeof(arr[0]);
+
+    clrscr();
+
+    // Printing the unsorted array
+    printf("\nThe array is: \t\t\t\t\t");
+    for(i=0; i<n; i++){
+	    printf("%d  ", arr[i]);
+    }
+
+    // Performing insertion sort
+    for(i=1; i<n; i++){
+        temp = arr[i];
+        j = i-1;
+
+        while(j >= 0 && arr[j] > temp){
+            arr[j+1] = arr[j];
+            j--;
+        }
+        arr[j+1] = temp;
+    }
+
+    // Printing out the sorted array
+    printf("\nThe sorted array after insertion sort is: \t");
+    for(i=0; i<n; i++){
+	    printf("%d  ", arr[i]);
+    }
+
+
+    // Printing the unsorted array again
+    printf("\n\nThe array after messing it up again is: \t");
+        for(i=0; i<n; i++){
+        printf("%d  ", arr2[i]);
+    }
+
+    // Performing selection sort
+    for(i=0; i<n-1; i++){
+        int min = i;
+
+        // Using linear search algorithm to search the min item
+        for(j=i+1; j<n; j++){
+            if(arr2[j] < arr2[min]){
+            min = j;
+            }
+        }
+
+        // Using swap algorithm to swap arr[i] with arr[min]
+        if(min != i){
+            temp = arr2[i];
+            arr2[i] = arr2[min];
+            arr2[min] = temp;
+        }
+    }
+
+
+    // Printing out the sorted array
+    printf("\nThe sorted array after selection sort is: \t");
+    for(i=0; i<n; i++){
+	    printf("%d  ", arr2[i]);
+    }
+
+    getch();
+    return;
+}

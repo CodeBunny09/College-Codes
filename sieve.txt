@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+
+void sieveOfEratosthenes(int n);
+
+void main(){
+    int n = 100;
+
+    clrscr();
+
+    printf("Enter the limit: ");
+    scanf("%d", &n);
+
+    sieveOfEratosthenes(n);
+    getch();
+    return;
+}
+
+
+void sieveOfEratosthenes(int n){
+    int primes[10000];
+    int i, j;
+
+    // Assuming all numbers are prime
+    for(i=0; i<=n; i++){
+        primes[i] = 1;
+    }
+
+    // Setting value of 0 and 1 to non prime
+    primes[0] = 0;
+    primes[1] = 0;
+
+    // Sieve Method
+    for(i=2; i*i < n; i++){
+        for(j=2*i; j<=n; j+=i){
+            primes[j] = 0;
+        }
+    }
+
+    // Printing out the list
+    for(i=0; i<=n; i++){
+        printf("%d %d\n", i, primes[i]);
+    }
+    return;
+}
